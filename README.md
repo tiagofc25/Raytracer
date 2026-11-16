@@ -1,11 +1,9 @@
 Raytracer
 
-A CPU ray tracer written in C++ for a film studio client: reliable, maintainable and open to contributions.
-
-This repository is built over the course Building Raytracer, Technical Strategy as a Tech-Lead.
+A ray tracer written in C++ for an animation studio. It runs on the CPU and is meant to be reliable, easy to maintain and open to contributions.
 
 Documentation
-Discovery report: problem statement, client interview summary, state of the art, ray tracing and C++ primers.
-Status
-m0: discovery report.
-m1 (coming): project setup (dev container, CMake, Catch2) and a base ray tracer rendering a sphere lit by the sun on a ground plane.
+Discovery report: the problem, the client interview, existing solutions, and short explanations of ray tracing and C++.
+Milestones
+m0: discovery report
+m1: project setup and a first ray tracer (a sphere lit by the sun on a ground plane)
