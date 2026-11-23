@@ -9,4 +9,5 @@ struct HitInfo {
     Vector point;
     Vector normal;              // normalised, pointing out of the surface
     const Material* material;   // owned by the object that was hit
+    double t;                   // distance along the ray: point = ray.at(t)
 };

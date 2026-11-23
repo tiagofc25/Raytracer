@@ -1,5 +1,7 @@
 #include "render/camera.h"
 
+#include "material/material.h"
+
 Camera::Camera(const Vector& position) : _position(position) {}
 
 const Vector& Camera::position() const { return _position; }
@@ -18,19 +20,22 @@ Ray Camera::rayThroughPixel(unsigned int x, unsigned int y,
     return Ray(_position, Vector(screenX, screenY, 1.0));
 }
 
-Colour Camera::trace(const Ray& ray, const Sphere& sphere, const Light& light) const {
-    std::optional<HitInfo> hit = sphere.intersect(ray);
+Colour Camera::trace(const Ray& ray, const Scene& scene) const {
+    std::optional<HitInfo> hit = scene.closestHit(ray);
     if (!hit) {
+        return scene.background();
+    }
+    if (scene.isInShadow(*hit)) {
         return Colour(0, 0, 0);
     }
-    return hit->material->shade(*hit, light);
+    return hit->material->shade(*hit, scene.light());
 }
 
-void Camera::render(Image& image, const Sphere& sphere, const Light& light, double screenWidth) const {
+void Camera::render(Image& image, const Scene& scene, double screenWidth) const {
     for (unsigned int y = 0; y < image.height(); ++y) {
         for (unsigned int x = 0; x < image.width(); ++x) {
             Ray ray = rayThroughPixel(x, y, image.width(), image.height(), screenWidth);
-            image.setPixel(x, y, trace(ray, sphere, light));
+            image.setPixel(x, y, trace(ray, scene));
         }
     }
 }

@@ -23,6 +23,8 @@ add_library(raytracer_core
   src/math/vector.cpp
   src/geometry/ray.cpp
   src/geometry/sphere.cpp
+  src/geometry/plane.cpp
+  src/scene/scene.cpp
   src/render/camera.cpp
   src/colour/colour.cpp
   src/image/image.cpp
@@ -50,6 +52,8 @@ enable_testing()
 add_executable(tests
   tests/math/vector_test.cpp
   tests/geometry/sphere_test.cpp
+  tests/geometry/plane_test.cpp
+  tests/scene/scene_test.cpp
   tests/render/camera_test.cpp
   tests/image/image_test.cpp
   tests/material/lambert_shader_test.cpp

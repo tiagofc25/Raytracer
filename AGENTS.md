@@ -9,7 +9,7 @@ Run them inside the dev container, from the project root.
 | Command      | What it does                                   |
 |--------------|------------------------------------------------|
 | `make build` | Configure and compile into `build/`            |
-| `make start` | Build, then render `output.png`                |
+| `make run`   | Build, then render `image.png`                 |
 | `make test`  | Build, then run every test with CTest          |
 | `make clean` | Delete `build/`                                |
 
