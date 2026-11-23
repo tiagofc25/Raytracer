@@ -16,10 +16,10 @@ All the commands below are run in the container's terminal.
 ### 2. Build and run
 
 ```sh
-make start
+make run
 ```
 
-This compiles the project and runs it. It prints `Hello, Raytracer!` and renders a lit sphere into `output.png`. To choose the file name: `./build/raytracer my_image.png`.
+This compiles the project and runs it. It prints `Hello, Raytracer!` and renders the m1 scene into `image.png`: a red sphere lit by the sun, on a green ground plane, with its shadow. To choose the file name: `./build/raytracer my_image.png`.
 
 ### 3. Run the tests
 
@@ -32,7 +32,7 @@ make test
 | Command      | Like…            | What it does                          |
 |--------------|------------------|---------------------------------------|
 | `make build` | `npm run build`  | Configure and compile into `build/`   |
-| `make start` | `npm run start`  | Build, then render `output.png`       |
+| `make run`   | `npm run start`  | Build, then render `image.png`       |
 | `make test`  | `npm test`       | Build, then run every test with CTest |
 | `make clean` | `npm run clean`  | Delete `build/`                       |
 
@@ -80,7 +80,8 @@ A new test file must be added to the `tests` target in `CMakeLists.txt`. For dec
 ```
 src/
   math/       Vector
-  geometry/   Ray, Sphere, HitInfo
+  geometry/   Ray, HitInfo, Shape (abstract), Sphere, Plane
+  scene/      Scene (objects + light + sky, closest hit, shadows)
   colour/     Colour
   light/      Light (point light)
   material/   Material (strategy), FlatShader, LambertShader
@@ -94,10 +95,11 @@ tests/        same folders as src/
 ## Documentation
 
 - [Discovery report](docs/discovery/discovery-report.md): the problem, the client interview, existing solutions, and short explanations of ray tracing and C++.
-- [Architecture decisions](docs/adr/): why we chose our tools.
+- [Domain model](docs/domain/domain-model.md): the concepts of the ray tracer and how they relate.
+- [Architecture decisions](docs/adr/): why we chose our tools and our design (all Proposed for now).
 - [AGENTS.md](AGENTS.md): rules for AI coding agents (and a good summary for humans).
 
 ## Milestones
 
 - m0: discovery report
-- m1: project setup and a first ray tracer (a sphere lit by the sun on a ground plane)
+- m1 (done): project setup and a first ray tracer (a sphere lit by the sun on a ground plane)

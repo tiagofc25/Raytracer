@@ -5,10 +5,11 @@
 
 #include "geometry/hit_info.h"
 #include "geometry/ray.h"
+#include "geometry/shape.h"
 #include "material/material.h"
 #include "math/vector.h"
 
-class Sphere {
+class Sphere : public Shape {
 public:
     Sphere(const Vector& center, double radius, std::shared_ptr<Material> material);
 
@@ -16,8 +17,7 @@ public:
     double radius() const;
     const Material& material() const;
 
-    // The closest hit in front of the ray origin, or nothing if the ray misses.
-    std::optional<HitInfo> intersect(const Ray& ray) const;
+    std::optional<HitInfo> intersect(const Ray& ray) const override;
 
 private:
     Vector _center;

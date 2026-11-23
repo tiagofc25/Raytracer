@@ -2,10 +2,9 @@
 
 #include "colour/colour.h"
 #include "geometry/ray.h"
-#include "geometry/sphere.h"
 #include "image/image.h"
-#include "light/light.h"
 #include "math/vector.h"
+#include "scene/scene.h"
 
 // A pinhole camera. For now it always looks along the positive Z axis,
 // at a screen placed at distance 1 in front of it.
@@ -22,11 +21,12 @@ public:
                         unsigned int imageWidth, unsigned int imageHeight,
                         double screenWidth) const;
 
-    // The colour seen along one ray: the sphere's material if it is hit, black otherwise.
-    Colour trace(const Ray& ray, const Sphere& sphere, const Light& light) const;
+    // The colour seen along one ray: the sky if nothing is hit, black if the
+    // hit point is in shadow, otherwise the colour given by its material.
+    Colour trace(const Ray& ray, const Scene& scene) const;
 
     // Fill every pixel of the image.
-    void render(Image& image, const Sphere& sphere, const Light& light, double screenWidth) const;
+    void render(Image& image, const Scene& scene, double screenWidth) const;
 
 private:
     Vector _position;
